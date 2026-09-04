@@ -1,5 +1,6 @@
 const readline = require('readline/promises');
 const { stdin: input, stdout: output } = require('process');
+const { addProject } = require('./addproject');
 
 // 1. Function to show the welcome message
 function showWelcomeMessage() {
@@ -19,12 +20,12 @@ function showMainMenu() {
 }
 
 // 3. Function to handle the user choice
-function handleChoice(choice) {
+async function handleChoice(choice, rl) {
   if (choice === '1') {
     console.log('\nBrowse Projects feature will be implemented here.\n');
     return true;
   } else if (choice === '2') {
-    console.log('\nAdd Project feature will be implemented here.\n');
+    await addProject(rl);
     return true;
   } else if (choice === '3') {
     console.log('\nFind Similar Projects feature will be implemented here.\n');
@@ -47,6 +48,9 @@ async function main() {
   // Create an interface to read user input from the terminal
   const rl = readline.createInterface({ input, output });
 
+  // Clear the terminal screen before displaying the welcome message
+  process.stdout.write('\x1b[2J\x1b[H');
+
   // Display the welcome banner once when the app starts
   showWelcomeMessage();
 
@@ -56,7 +60,8 @@ async function main() {
   while (isRunning) {
     showMainMenu();
     const userChoice = await rl.question('Enter your choice: ');
-    isRunning = handleChoice(userChoice.trim());
+    process.stdout.write('\x1b[2J\x1b[H');
+    isRunning = await handleChoice(userChoice.trim(), rl);
   }
 
   // Close the readline interface when exiting
