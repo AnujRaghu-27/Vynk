@@ -1,4 +1,4 @@
-// Function to add a project (currently collects project title, problem statement, description, objectives, tech stack, domain, and university/college name)
+// Function to add a project (currently collects project title, problem statement, description, objectives, tech stack, domain, university/college name, department, and team members)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -97,6 +97,18 @@ async function addProject(rl) {
       department = inputDepartment.trim();
     }
   }
+
+  // Prompt the user for optional team members (can be skipped for solo projects)
+  const inputTeamMembers = await rl.question('Enter team members (optional): ');
+  const teamMembers = inputTeamMembers.trim();
+
+  // Prompt the user for optional GitHub Link
+  const inputGitHubLink = await rl.question('Enter GitHub Link (optional): ');
+  const GitHub_Link = inputGitHubLink.trim();
+
+  // Prompt the user for optional Deployed Link
+  const inputDeployedLink = await rl.question('Enter Deployed Link (optional): ');
+  const Deployed_Link = inputDeployedLink.trim();
 
   console.log('\nProject details collected successfully!\n');
 }
