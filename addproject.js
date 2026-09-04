@@ -1,4 +1,4 @@
-// Function to add a project (currently collects project title and problem statement)
+// Function to add a project (currently collects project title, problem statement, and description)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -26,7 +26,19 @@ async function addProject(rl) {
     }
   }
 
-  console.log('\nProject added successfully!\n');
+  let description = '';
+
+  // Prompt the user until a non-empty description is provided
+  while (!description) {
+    const inputDescription = await rl.question('Enter project description: ');
+    if (inputDescription.trim() === '') {
+      console.log('\nDescription cannot be empty. Please try again.\n');
+    } else {
+      description = inputDescription.trim();
+    }
+  }
+
+  console.log('\nProject details collected successfully!\n');
 }
 
 // Export the addProject function so it can be used in mainmenu.js
