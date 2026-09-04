@@ -86,6 +86,18 @@ async function addProject(rl) {
     }
   }
 
+  let department = '';
+
+  // Prompt the user until a non-empty department is provided
+  while (!department) {
+    const inputDepartment = await rl.question('Enter project department: ');
+    if (inputDepartment.trim() === '') {
+      console.log('\ndepartment cannot be empty. Please try again.\n');
+    } else {
+      department = inputDepartment.trim();
+    }
+  }
+
   console.log('\nProject details collected successfully!\n');
 }
 
