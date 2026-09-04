@@ -1,4 +1,4 @@
-// Function to add a project (currently collects project title, problem statement, description, and objectives)
+// Function to add a project (currently collects project title, problem statement, description, objectives, and tech stack)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -47,6 +47,18 @@ async function addProject(rl) {
       console.log('\nObjectives cannot be empty. Please try again.\n');
     } else {
       objectives = inputObjectives.trim();
+    }
+  }
+
+  let techStack = '';
+
+  // Prompt the user until a non-empty tech stack is provided
+  while (!techStack) {
+    const inputTechStack = await rl.question('Enter tech stack: ');
+    if (inputTechStack.trim() === '') {
+      console.log('\nTech stack cannot be empty. Please try again.\n');
+    } else {
+      techStack = inputTechStack.trim();
     }
   }
 
