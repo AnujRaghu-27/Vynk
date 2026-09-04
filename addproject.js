@@ -1,4 +1,10 @@
-// Function to add a project (currently collects project title, problem statement, description, objectives, tech stack, domain, university/college name, department, and team members)
+const fs = require('fs');
+const path = require('path');
+
+// Path to data/projects.json
+const filePath = path.join(__dirname, 'data', 'projects.json');
+
+// Function to add a project (collects all project fields and saves to data/projects.json)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -110,7 +116,43 @@ async function addProject(rl) {
   const inputDeployedLink = await rl.question('Enter Deployed Link (optional): ');
   const Deployed_Link = inputDeployedLink.trim();
 
-  console.log('\nProject details collected successfully!\n');
+  // Create a project object with all collected information
+  const newProject = {
+    title: projectTitle,
+    problemStatement: problemStatement,
+    description: description,
+    objectives: objectives,
+    techStack: techStack,
+    domain: domain,
+    university: university,
+    department: department,
+    teamMembers: teamMembers,
+    githubLink: GitHub_Link,
+    deployedLink: Deployed_Link
+  };
+
+  // Save the project to data/projects.json
+  try {
+    let projects = [];
+
+    // Check if the file exists and read existing projects
+    if (fs.existsSync(filePath)) {
+      const fileData = fs.readFileSync(filePath, 'utf-8');
+      if (fileData.trim() !== '') {
+        projects = JSON.parse(fileData);
+      }
+    }
+
+    // Add the new project to the array
+    projects.push(newProject);
+
+    // Write the updated array back to data/projects.json
+    fs.writeFileSync(filePath, JSON.stringify(projects, null, 2), 'utf-8');
+
+    console.log('\nProject added successfully!\n');
+  } catch (error) {
+    console.log('\nError saving project to file. Please try again.\n');
+  }
 }
 
 // Export the addProject function so it can be used in mainmenu.js
