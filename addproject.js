@@ -1,4 +1,4 @@
-// Function to add a project (currently collects project title, problem statement, and description)
+// Function to add a project (currently collects project title, problem statement, description, and objectives)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -35,6 +35,18 @@ async function addProject(rl) {
       console.log('\nDescription cannot be empty. Please try again.\n');
     } else {
       description = inputDescription.trim();
+    }
+  }
+
+  let objectives = '';
+
+  // Prompt the user until non-empty objectives are provided
+  while (!objectives) {
+    const inputObjectives = await rl.question('Enter project objectives: ');
+    if (inputObjectives.trim() === '') {
+      console.log('\nObjectives cannot be empty. Please try again.\n');
+    } else {
+      objectives = inputObjectives.trim();
     }
   }
 
