@@ -1,4 +1,4 @@
-// Function to add a project (currently collects project title, problem statement, description, objectives, and tech stack)
+// Function to add a project (currently collects project title, problem statement, description, objectives, tech stack, and domain)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -59,6 +59,18 @@ async function addProject(rl) {
       console.log('\nTech stack cannot be empty. Please try again.\n');
     } else {
       techStack = inputTechStack.trim();
+    }
+  }
+
+  let domain = '';
+
+  // Prompt the user until a non-empty domain is provided
+  while (!domain) {
+    const inputDomain = await rl.question('Enter project domain: ');
+    if (inputDomain.trim() === '') {
+      console.log('\nDomain cannot be empty. Please try again.\n');
+    } else {
+      domain = inputDomain.trim();
     }
   }
 
