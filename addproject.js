@@ -1,4 +1,4 @@
-// Function to add a project (currently collects project title, problem statement, description, objectives, tech stack, and domain)
+// Function to add a project (currently collects project title, problem statement, description, objectives, tech stack, domain, and university/college name)
 async function addProject(rl) {
   console.log('Add Project\n');
 
@@ -71,6 +71,18 @@ async function addProject(rl) {
       console.log('\nDomain cannot be empty. Please try again.\n');
     } else {
       domain = inputDomain.trim();
+    }
+  }
+
+  let university = '';
+
+  // Prompt the user until a non-empty university/college name is provided
+  while (!university) {
+    const inputUniversity = await rl.question('Enter university/college name: ');
+    if (inputUniversity.trim() === '') {
+      console.log('\nUniversity/College name cannot be empty. Please try again.\n');
+    } else {
+      university = inputUniversity.trim();
     }
   }
 
