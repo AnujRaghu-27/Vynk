@@ -56,6 +56,18 @@ async function addProject(rl) {
     }
   }
 
+  let howItWorks = '';
+
+  // Prompt the user until a non-empty how it works is provided
+  while (!howItWorks) {
+    const inputHowItWorks = await rl.question('Enter how the project works: ');
+    if (inputHowItWorks.trim() === '') {
+      console.log('\nHow It Works cannot be empty. Please try again.\n');
+    } else {
+      howItWorks = inputHowItWorks.trim();
+    }
+  }
+
   let techStack = '';
 
   // Prompt the user until a non-empty tech stack is provided
@@ -132,6 +144,8 @@ async function addProject(rl) {
     console.log(description);
     console.log('\nObjectives:');
     console.log(objectives);
+    console.log('\nHow It Works:');
+    console.log(howItWorks);
     console.log('\nTech Stack:');
     console.log(techStack);
     console.log('\nDomain:');
@@ -161,6 +175,7 @@ async function addProject(rl) {
         problemStatement: problemStatement,
         description: description,
         objectives: objectives,
+        howItWorks: howItWorks,
         techStack: techStack,
         domain: domain,
         university: university,
@@ -202,14 +217,15 @@ async function addProject(rl) {
         console.log('2. Problem Statement');
         console.log('3. Description');
         console.log('4. Objectives');
-        console.log('5. Tech Stack');
-        console.log('6. Domain');
-        console.log('7. University/College');
-        console.log('8. Department');
-        console.log('9. Team Members');
-        console.log('10. GitHub Link');
-        console.log('11. Deployed Link');
-        console.log('12. Back to Review\n');
+        console.log('5. How It Works');
+        console.log('6. Tech Stack');
+        console.log('7. Domain');
+        console.log('8. University/College');
+        console.log('9. Department');
+        console.log('10. Team Members');
+        console.log('11. GitHub Link');
+        console.log('12. Deployed Link');
+        console.log('13. Back to Review\n');
 
         const editChoice = await rl.question('Enter your choice: ');
 
@@ -262,6 +278,18 @@ async function addProject(rl) {
           objectives = newObjectives;
           editing = false;
         } else if (editChoice.trim() === '5') {
+          let newHowItWorks = '';
+          while (!newHowItWorks) {
+            const inputHowItWorks = await rl.question('\nEnter new How It Works: ');
+            if (inputHowItWorks.trim() === '') {
+              console.log('\nHow It Works cannot be empty. Please try again.\n');
+            } else {
+              newHowItWorks = inputHowItWorks.trim();
+            }
+          }
+          howItWorks = newHowItWorks;
+          editing = false;
+        } else if (editChoice.trim() === '6') {
           let newTechStack = '';
           while (!newTechStack) {
             const inputTechStack = await rl.question('\nEnter new tech stack: ');
@@ -273,7 +301,7 @@ async function addProject(rl) {
           }
           techStack = newTechStack;
           editing = false;
-        } else if (editChoice.trim() === '6') {
+        } else if (editChoice.trim() === '7') {
           let newDomain = '';
           while (!newDomain) {
             const inputDomain = await rl.question('\nEnter new project domain: ');
@@ -285,7 +313,7 @@ async function addProject(rl) {
           }
           domain = newDomain;
           editing = false;
-        } else if (editChoice.trim() === '7') {
+        } else if (editChoice.trim() === '8') {
           let newUniversity = '';
           while (!newUniversity) {
             const inputUniversity = await rl.question('\nEnter new university/college name: ');
@@ -297,7 +325,7 @@ async function addProject(rl) {
           }
           university = newUniversity;
           editing = false;
-        } else if (editChoice.trim() === '8') {
+        } else if (editChoice.trim() === '9') {
           let newDepartment = '';
           while (!newDepartment) {
             const inputDepartment = await rl.question('\nEnter new project department: ');
@@ -309,22 +337,22 @@ async function addProject(rl) {
           }
           department = newDepartment;
           editing = false;
-        } else if (editChoice.trim() === '9') {
+        } else if (editChoice.trim() === '10') {
           const inputTeam = await rl.question('\nEnter new team members (optional): ');
           teamMembers = inputTeam.trim();
           editing = false;
-        } else if (editChoice.trim() === '10') {
+        } else if (editChoice.trim() === '11') {
           const inputGitHub = await rl.question('\nEnter new GitHub Link (optional): ');
           GitHub_Link = inputGitHub.trim();
           editing = false;
-        } else if (editChoice.trim() === '11') {
+        } else if (editChoice.trim() === '12') {
           const inputDeployed = await rl.question('\nEnter new Deployed Link (optional): ');
           Deployed_Link = inputDeployed.trim();
           editing = false;
-        } else if (editChoice.trim() === '12') {
+        } else if (editChoice.trim() === '13') {
           editing = false;
         } else {
-          console.log('\nInvalid choice. Please enter a number from 1 to 12.\n');
+          console.log('\nInvalid choice. Please enter a number from 1 to 13.\n');
         }
       }
     } else if (confirmChoice.trim() === '3') {
