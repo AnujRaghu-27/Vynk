@@ -48,9 +48,6 @@ async function main() {
   // Create an interface to read user input from the terminal
   const rl = readline.createInterface({ input, output });
 
-  // Clear the terminal screen before displaying the welcome message
-  process.stdout.write('\x1b[2J\x1b[H');
-
   // Display the welcome banner once when the app starts
   showWelcomeMessage();
 
@@ -60,7 +57,6 @@ async function main() {
   while (isRunning) {
     showMainMenu();
     const userChoice = await rl.question('Enter your choice: ');
-    process.stdout.write('\x1b[2J\x1b[H');
     isRunning = await handleChoice(userChoice.trim(), rl);
   }
 
