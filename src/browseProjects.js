@@ -104,8 +104,15 @@ async function searchProjects(rl) {
     return;
   }
 
-  const matchingProjects = projects.filter((project) => {
-    const fieldsToSearch = [
+  // Split the user query into individual words (ignoring empty spaces)
+  const queryWords = trimmedQuery.split(' ').filter((word) => word.trim() !== '');
+
+  const scoredProjects = [];
+
+  // Check each project against the query words
+  for (const project of projects) {
+    // Combine searchable project fields into one lowercase text string
+    const projectText = [
       project.title,
       project.problemStatement,
       project.description,
@@ -116,12 +123,30 @@ async function searchProjects(rl) {
       project.university,
       project.department,
       project.teamMembers
-    ];
+    ]
+      .filter(Boolean)
+      .join(' ')
+      .toLowerCase();
 
-    return fieldsToSearch.some(
-      (field) => field && field.toLowerCase().includes(trimmedQuery)
-    );
-  });
+    // Count how many query words appear in the project text
+    let score = 0;
+    for (const word of queryWords) {
+      if (projectText.includes(word)) {
+        score++;
+      }
+    }
+
+    // Only include projects that match at least one word
+    if (score > 0) {
+      scoredProjects.push({ project, score });
+    }
+  }
+
+  // Sort matching projects in descending order of score (highest score first)
+  scoredProjects.sort((a, b) => b.score - a.score);
+
+  // Extract the project objects
+  const matchingProjects = scoredProjects.map((item) => item.project);
 
   if (matchingProjects.length === 0) {
     console.log('\nNo matching projects found.\n');
