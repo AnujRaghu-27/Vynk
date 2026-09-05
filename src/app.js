@@ -1,6 +1,7 @@
 const readline = require('readline/promises');
 const { stdin: input, stdout: output } = require('process');
-const { addProject } = require('./addproject');
+const { addProject } = require('./addProject');
+const { browseProjects } = require('./browseProjects');
 
 // 1. Function to show the welcome message
 function showWelcomeMessage() {
@@ -22,7 +23,7 @@ function showMainMenu() {
 // 3. Function to handle the user choice
 async function handleChoice(choice, rl) {
   if (choice === '1') {
-    console.log('\nBrowse Projects feature will be implemented here.\n');
+    await browseProjects(rl);
     return true;
   } else if (choice === '2') {
     await addProject(rl);

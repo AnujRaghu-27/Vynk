@@ -1,0 +1,72 @@
+[
+  {
+    "title": "AI Fake News Detector",
+    "problemStatement": "Fake news and misleading information can spread quickly through online platforms.",
+    "description": "An AI-based system that analyzes news articles and predicts whether the content is likely to be fake or genuine.",
+    "objectives": "Detect potentially fake news and help users identify misleading information.",
+    "howItWorks": "The user provides a news article, the system analyzes its content using machine learning techniques, and then displays the prediction.",
+    "techStack": "Python, Machine Learning, Gemini API",
+    "domain": "Artificial Intelligence",
+    "university": "Newton School of Technology",
+    "department": "CSE",
+    "teamMembers": "Anuj, Rahul",
+    "githubLink": "",
+    "deployedLink": ""
+  },
+  {
+    "title": "News Verification System",
+    "problemStatement": "Users often have difficulty verifying whether information in online news articles is trustworthy.",
+    "description": "A system that analyzes news articles and provides information to help users verify the credibility of the content.",
+    "objectives": "Help users verify online news and reduce the spread of misinformation.",
+    "howItWorks": "The system receives a news article, analyzes its content, checks relevant information, and presents verification results.",
+    "techStack": "Python, Natural Language Processing, Machine Learning",
+    "domain": "Artificial Intelligence",
+    "university": "ABC University",
+    "department": "CSE",
+    "teamMembers": "Rohan, Priya",
+    "githubLink": "",
+    "deployedLink": ""
+  },
+  {
+    "title": "Smart Campus Navigation",
+    "problemStatement": "Students can have difficulty finding classrooms, laboratories, and other locations on a large campus.",
+    "description": "A navigation system that helps students find different locations within their college campus.",
+    "objectives": "Make campus navigation easier and reduce the time students spend searching for locations.",
+    "howItWorks": "The user selects a destination and the system provides a route from the current location to the selected destination.",
+    "techStack": "JavaScript, Node.js, Maps API",
+    "domain": "Web Development",
+    "university": "XYZ University",
+    "department": "CSE",
+    "teamMembers": "Aman, Neha",
+    "githubLink": "",
+    "deployedLink": ""
+  },
+  {
+    "title": "Student Performance Predictor",
+    "problemStatement": "Students and teachers may find it difficult to identify students who are at risk of poor academic performance.",
+    "description": "A machine learning system that predicts student academic performance using relevant student data.",
+    "objectives": "Predict academic performance and help identify areas where students may need support.",
+    "howItWorks": "Student data is provided to the system, the machine learning model analyzes the data, and a predicted performance result is generated.",
+    "techStack": "Python, Pandas, Scikit-learn, Machine Learning",
+    "domain": "Artificial Intelligence",
+    "university": "PQR College",
+    "department": "CSE",
+    "teamMembers": "Vikas, Simran",
+    "githubLink": "",
+    "deployedLink": ""
+  },
+  {
+    "title": "IoT Smart Waste Management",
+    "problemStatement": "Traditional waste collection systems may not know when garbage bins are full, leading to inefficient collection.",
+    "description": "An IoT-based system that monitors garbage levels in waste bins and helps optimize waste collection.",
+    "objectives": "Improve waste collection efficiency and reduce unnecessary collection trips.",
+    "howItWorks": "Sensors monitor the garbage level inside bins and send the collected information to the system so that full bins can be identified.",
+    "techStack": "Arduino, IoT Sensors, Node.js",
+    "domain": "Internet of Things",
+    "university": "LMN University",
+    "department": "ECE",
+    "teamMembers": "Karan, Arjun",
+    "githubLink": "",
+    "deployedLink": ""
+  }
+]
