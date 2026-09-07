@@ -27,7 +27,7 @@ The problem statement aims to develop an integrated platform where project infor
 
 Vynk provides a common project ecosystem where students can discover and showcase projects from different colleges and universities.
 
-Students can browse existing projects, add their own projects, check for similar projects before developing an idea, and discover projects related to a particular topic or domain.
+Students can browse existing projects, add their own projects, and check for similar projects before developing an idea.
 
 Vynk is being developed as a **terminal/CLI application** to provide a simple and lightweight prototype within the available development time.
 
@@ -90,22 +90,3 @@ The purpose is to help students:
 
 The similarity score represents how similar the projects are. It does **not** represent or prove plagiarism.
 
----
-
-### 4. Find Related Projects
-
-Students can enter a broader topic, field, or domain and discover projects related to it.
-
-For example, searching for:
-
-`Artificial Intelligence`
-
-could return projects related to:
-
-- Machine Learning
-- Natural Language Processing
-- Computer Vision
-- Deep Learning
-- AI applications
-
-Related-project discovery can use information such as project domains, technologies, keywords, titles, and descriptions.

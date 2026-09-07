@@ -4,6 +4,11 @@ const path = require('path');
 // Path to data/projects.json
 const filePath = path.join(__dirname, '../data/projects.json');
 
+// Helper function to validate if a link is a valid GitHub URL
+function isValidGithubLink(link) {
+  return link.startsWith('https://github.com/');
+}
+
 // Function to add a project (collects all project fields, reviews, and saves to data/projects.json)
 async function addProject(rl) {
   console.log('Add Project\n');
@@ -120,13 +125,29 @@ async function addProject(rl) {
   const inputTeamMembers = await rl.question('Enter team members (optional): ');
   let teamMembers = inputTeamMembers.trim();
 
-  // Prompt the user for optional GitHub Link
-  const inputGitHubLink = await rl.question('Enter GitHub Link (optional): ');
-  let GitHub_Link = inputGitHubLink.trim();
+  // Prompt the user for optional GitHub Link with validation
+  let githubLink = '';
+  while (true) {
+    const inputGitHubLink = await rl.question('Enter GitHub Link (optional): ');
+    const trimmedLink = inputGitHubLink.trim();
+
+    if (trimmedLink === '') {
+      githubLink = 'Not Provided';
+      break;
+    } else if (isValidGithubLink(trimmedLink)) {
+      githubLink = trimmedLink;
+      break;
+    } else {
+      console.log('\nInvalid GitHub link. Please enter a valid GitHub URL starting with https://github.com/\n');
+    }
+  }
 
   // Prompt the user for optional Deployed Link
   const inputDeployedLink = await rl.question('Enter Deployed Link (optional): ');
-  let Deployed_Link = inputDeployedLink.trim();
+  let deployedLink = inputDeployedLink.trim();
+  if (deployedLink === '') {
+    deployedLink = 'Not Provided';
+  }
 
   // Review and confirmation loop
   let reviewing = true;
@@ -157,9 +178,9 @@ async function addProject(rl) {
     console.log('\nTeam Members:');
     console.log(teamMembers);
     console.log('\nGitHub Link:');
-    console.log(GitHub_Link);
+    console.log(githubLink);
     console.log('\nDeployed Link:');
-    console.log(Deployed_Link);
+    console.log(deployedLink);
 
     console.log('\n========================================\n');
     console.log('1. Confirm');
@@ -181,8 +202,8 @@ async function addProject(rl) {
         university: university,
         department: department,
         teamMembers: teamMembers,
-        githubLink: GitHub_Link,
-        deployedLink: Deployed_Link
+        githubLink: githubLink,
+        deployedLink: deployedLink
       };
 
       try {
@@ -342,12 +363,29 @@ async function addProject(rl) {
           teamMembers = inputTeam.trim();
           editing = false;
         } else if (editChoice.trim() === '11') {
-          const inputGitHub = await rl.question('\nEnter new GitHub Link (optional): ');
-          GitHub_Link = inputGitHub.trim();
+          let newGitHubLink = '';
+          while (true) {
+            const inputGitHub = await rl.question('\nEnter new GitHub Link (optional): ');
+            const trimmedGitHub = inputGitHub.trim();
+
+            if (trimmedGitHub === '') {
+              newGitHubLink = 'Not Provided';
+              break;
+            } else if (isValidGithubLink(trimmedGitHub)) {
+              newGitHubLink = trimmedGitHub;
+              break;
+            } else {
+              console.log('\nInvalid GitHub link. Please enter a valid GitHub URL starting with https://github.com/\n');
+            }
+          }
+          githubLink = newGitHubLink;
           editing = false;
         } else if (editChoice.trim() === '12') {
           const inputDeployed = await rl.question('\nEnter new Deployed Link (optional): ');
-          Deployed_Link = inputDeployed.trim();
+          deployedLink = inputDeployed.trim();
+          if (deployedLink==""){
+            deployedLink="Not Provided";
+          }
           editing = false;
         } else if (editChoice.trim() === '13') {
           editing = false;

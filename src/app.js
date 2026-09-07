@@ -16,8 +16,7 @@ function showMainMenu() {
   console.log('1. Browse Projects');
   console.log('2. Add Project');
   console.log('3. Find Similar Projects');
-  console.log('4. Find Related Projects');
-  console.log('5. Exit\n');
+  console.log('4. Exit\n');
 }
 
 // 3. Function to handle the user choice
@@ -32,14 +31,11 @@ async function handleChoice(choice, rl) {
     console.log('\nFind Similar Projects feature will be implemented here.\n');
     return true;
   } else if (choice === '4') {
-    console.log('\nFind Related Projects feature will be implemented here.\n');
-    return true;
-  } else if (choice === '5') {
     console.log('\nThank you for using Vynk!');
     console.log('Goodbye.\n');
     return false; // Returning false tells our loop to stop
   } else {
-    console.log('\nInvalid choice. Please enter a number from 1 to 5.\n');
+    console.log('\nInvalid choice. Please enter a number from 1 to 4.\n');
     return true;
   }
 }
