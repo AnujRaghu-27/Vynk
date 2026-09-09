@@ -2,6 +2,7 @@ const readline = require('readline/promises');
 const { stdin: input, stdout: output } = require('process');
 const { addProject } = require('./addProject');
 const { browseProjects } = require('./browseProjects');
+const { findSimilarProjects } = require('./findSimilarProjects');
 
 // 1. Function to show the welcome message
 function showWelcomeMessage() {
@@ -28,7 +29,7 @@ async function handleChoice(choice, rl) {
     await addProject(rl);
     return true;
   } else if (choice === '3') {
-    console.log('\nFind Similar Projects feature will be implemented here.\n');
+    await findSimilarProjects(rl);
     return true;
   } else if (choice === '4') {
     console.log('\nThank you for using Vynk!');
