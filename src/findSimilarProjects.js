@@ -89,17 +89,19 @@ Instructions:
    - Problem Statement
    - How It Works
    - Tech Stack (as supporting information only; tech stack alone does not make projects similar)
-3. The main focus must be on the project's actual purpose, problem solved, and core functionality.
+3. The main focus must be on the project's actual purpose, problem solved, and core functionality. Prioritize: (1) Problem, (2) Purpose/functionality, (3) How it works, and (4) Tech stack as supporting evidence.
 4. Assign a similarity percentage between 0 and 100 for each project.
-5. Only include projects in "similarProjects" that are meaningfully similar (similarity >= 40%).
-6. Sort the results in descending order of similarity (highest similarity first).
+5. Provide a concise, beginner-friendly explanation (around 1–3 sentences) explaining WHY the project is similar based on the overlap in problem, purpose, approach, or tech stack. Do not simply say "These projects are similar." Do not make up information not present in the project data.
+6. Only include projects in "similarProjects" that are meaningfully similar (similarity >= 40%).
+7. Sort the results in descending order of similarity (highest similarity first).
 
 Return ONLY a valid JSON object with the following structure and no extra text or markdown formatting:
 {
   "similarProjects": [
     {
       "title": "Project Title",
-      "similarity": 91
+      "similarity": 91,
+      "explanation": "Both projects focus on detecting misinformation in news using AI and NLP. They address a similar problem and use a similar technical approach."
     }
   ]
 }
@@ -135,8 +137,13 @@ If no projects are meaningfully similar, return:
     } else {
       console.log('========== Similar Projects ==========\n');
       similarProjects.forEach((item, index) => {
+        const explanation = item.explanation && typeof item.explanation === 'string' && item.explanation.trim() !== ''
+          ? item.explanation.trim()
+          : 'Explanation not available.';
         console.log(`${index + 1}. ${item.title}`);
-        console.log(`   Similarity: ${item.similarity}%\n`);
+        console.log(`   Similarity: ${item.similarity}%`);
+        console.log(`   Why this project is similar:`);
+        console.log(`   ${explanation}\n`);
       });
     }
 
